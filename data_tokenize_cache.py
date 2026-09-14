@@ -77,23 +77,12 @@ def tokenize_and_cache_sft(sft_dataset, tokenizer, sft_max_seq_length: int) -> D
     print(f"Pre-tokenizing SFT dataset with {NUM_WORKERS} workers (runs once, then cached)...")
 
     def sft_tokenize(examples):
-<<<<<<< HEAD
         return tokenizer(
-=======
-        tokenized = tokenizer(
->>>>>>> 07d00f6 (Final code of CPT and SFT)
             examples["text"],
             truncation=True,
             max_length=sft_max_seq_length,
             padding=False,
         )
-<<<<<<< HEAD
-=======
-        # Labels must equal input_ids for causal LM loss
-        # DataCollatorForSeq2Seq will mask padding positions with -100
-        tokenized["labels"] = tokenized["input_ids"].copy()
-        return tokenized
->>>>>>> 07d00f6 (Final code of CPT and SFT)
 
     sft_tok = {}
     for split in ["train", "test"]:

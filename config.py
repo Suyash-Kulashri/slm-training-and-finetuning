@@ -43,13 +43,8 @@ SFT_TARGET_MODULES = [
 # CHANGED for 4x A100-40GB + torchrun DDP:
 #   per_device=4 × 4 GPUs × grad_accum=4 = 64 effective batch (same as before)
 #   OLD: per_device=16, grad_accum=4, 1 GPU → effective=64
-<<<<<<< HEAD
 CPT_PER_DEVICE_BATCH  = 4     # per GPU (was 16 on single 80GB)
 CPT_GRAD_ACCUM        = 4     # per_device × num_gpus × grad_accum = 4×4×4 = 64
-=======
-CPT_PER_DEVICE_BATCH  = 2     # per GPU (was 16 on single 80GB)
-CPT_GRAD_ACCUM        = 8     # per_device × num_gpus × grad_accum = 4×4×4 = 64
->>>>>>> 07d00f6 (Final code of CPT and SFT)
 CPT_NUM_EPOCHS        = 1
 CPT_LR                = 2e-5
 CPT_WARMUP_RATIO      = 0.05
@@ -107,11 +102,7 @@ MINHASH_BATCH       = 5_000
 TOKEN_BUDGET_M      = 500    # million tokens — CPT saturates well before 2B
 
 # ── SFT data ──────────────────────────────────────────────────────────────────
-<<<<<<< HEAD
 SFT_DATASET_PATH    = "chatdoctor_healthcaremagic_train.jsonl"
-=======
-SFT_DATASET_PATH    = "SFT_covid.jsonl"
->>>>>>> 07d00f6 (Final code of CPT and SFT)
 SFT_CACHE_TOKENIZED = "_sft_tokenized_cache"
 
 # ── Output paths ──────────────────────────────────────────────────────────────

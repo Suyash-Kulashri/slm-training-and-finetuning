@@ -21,15 +21,10 @@ from transformers import (
     Trainer,
     TrainingArguments,
     DataCollatorForSeq2Seq,
-<<<<<<< HEAD
     EarlyStoppingCallback,
     get_chat_template,
 )
 from unsloth.chat_templates import get_chat_template as unsloth_get_chat_template
-=======
-    EarlyStoppingCallback
-)
->>>>>>> 07d00f6 (Final code of CPT and SFT)
 from config import (
     SFT_DATASET_PATH, SFT_CACHE_TOKENIZED,
     SFT_PER_DEVICE_BATCH, SFT_GRAD_ACCUM, SFT_NUM_EPOCHS,
@@ -49,7 +44,6 @@ def _is_rank0() -> bool:
 
 
 def apply_chat_template(tokenizer):
-<<<<<<< HEAD
     """Apply Llama-3 chat template to tokenizer."""
     # Use unsloth's helper for template application — this is safe even
     # without Unsloth training, as it only modifies the tokenizer's template.
@@ -60,25 +54,6 @@ def apply_chat_template(tokenizer):
         tokenizer.chat_template = None  # use model default
     if _is_rank0():
         print(f"✓ Chat template applied")
-=======
-    """Apply Llama-3 chat template directly — no Unsloth dependency."""
-    # Llama-3 chat template hardcoded — removes unsloth dependency entirely
-    tokenizer.chat_template = (
-        "{% set loop_messages = messages %}"
-        "{% for message in loop_messages %}"
-        "{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>\n\n' + message['content'] | trim + '<|eot_id|>' %}"
-        "{% if loop.index0 == 0 %}"
-        "{% set content = bos_token + content %}"
-        "{% endif %}"
-        "{{ content }}"
-        "{% endfor %}"
-        "{% if add_generation_prompt %}"
-        "{{ '<|start_header_id|>assistant<|end_header_id|>\n\n' }}"
-        "{% endif %}"
-    )
-    if _is_rank0():
-        print(f"✓ Llama-3 chat template applied")
->>>>>>> 07d00f6 (Final code of CPT and SFT)
         print(f"  EOS token : '{tokenizer.eos_token}'  (id: {tokenizer.eos_token_id})")
     return tokenizer
 

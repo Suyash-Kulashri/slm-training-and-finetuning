@@ -114,10 +114,6 @@ def create_cpt_trainer(model, tokenizer, dataset):
         eval_steps=CPT_EVAL_STEPS,
         save_strategy="steps",
         save_steps=CPT_SAVE_STEPS,
-<<<<<<< HEAD
-=======
-        per_device_eval_batch_size=1,
->>>>>>> 07d00f6 (Final code of CPT and SFT)
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         greater_is_better=False,

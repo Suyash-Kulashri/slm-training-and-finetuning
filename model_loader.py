@@ -45,11 +45,7 @@ def _load_base_model(model_name: str) -> AutoModelForCausalLM:
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype=torch.bfloat16,
-<<<<<<< HEAD
         attn_implementation="flash_attention_2",
-=======
-        attn_implementation="sdpa",
->>>>>>> 07d00f6 (Final code of CPT and SFT)
         device_map=None,   # MUST be None for DDP — torchrun handles placement
     )
     model.config.tie_word_embeddings = False

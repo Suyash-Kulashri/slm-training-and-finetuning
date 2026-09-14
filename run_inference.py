@@ -47,13 +47,8 @@ def parse_args():
         help="System prompt for chat inference.",
     )
     parser.add_argument(
-<<<<<<< HEAD
         "--max-tokens", type=int, default=300,
         help="Maximum new tokens to generate (default: 300).",
-=======
-        "--max-tokens", type=int, default=1024,
-        help="Maximum new tokens to generate (default: 1024).",
->>>>>>> 07d00f6 (Final code of CPT and SFT)
     )
     parser.add_argument(
         "--no-stream", action="store_true",

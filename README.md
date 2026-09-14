@@ -286,19 +286,3 @@ Both check that the AWS CLI is installed and that credentials are configured (`a
 | Lost `screen` session | `screen -ls` to list sessions; `tail -f *.log` still works even if the session died — checkpoints are safe regardless. |
 
 ---
-
-## Known issues in this repo
-
-A few things worth fixing before you rely on this code as-is:
-
-- **Unresolved Git merge conflicts.** Several files still contain literal `<<<<<<< HEAD` / `=======` / `>>>>>>>` conflict markers left over from a merge (`config.py`, `data_dataset.py`, `data_tokenize_cache.py`, `cpt_trainer.py`, `model_loader.py`, `sft_trainer.py`, `inference.py`, `run_inference.py`). **These will cause a `SyntaxError` if run as-is** — each conflict needs to be resolved by picking one side (generally the `07d00f6 (Final code of CPT and SFT)` side looks like the intended final version, e.g. `attn_implementation="sdpa"` over `flash_attention_2`, and `SFT_DATASET_PATH = "SFT_covid.jsonl"` over the ChatDoctor path) before training will run.
-- **Hardcoded S3 bucket** (`s3://hsihsak`) in both shell scripts — replace with your own bucket.
-- **`unsloth` listed as a dependency** solely for its chat-template helper, but `sft_trainer.py`'s conflicting code already includes a hardcoded Llama-3 template as a fallback — once the merge conflict above is resolved in favor of the hardcoded template, the `unsloth` dependency in `requirements.txt` can likely be dropped entirely.
-- **No `LICENSE` file** is present in the repository.
-- **Gated base model** — `meta-llama/Llama-3.1-8B` requires accepting Meta's license on HuggingFace and authenticating via `huggingface-cli login` before the pipeline can download it.
-
----
-
-## License
-
-No license file was found in this repository. Confirm usage terms with the repository owner before reusing this code, and note that the base model (Llama-3.1-8B) carries its own separate license from Meta.

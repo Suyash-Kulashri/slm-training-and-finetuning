@@ -24,11 +24,7 @@ def load_inference_model(model_path: str = None):
     model = AutoModelForCausalLM.from_pretrained(
         mp,
         torch_dtype=torch.bfloat16,
-<<<<<<< HEAD
         attn_implementation="flash_attention_2",
-=======
-        attn_implementation="sdpa",
->>>>>>> 07d00f6 (Final code of CPT and SFT)
         device_map="auto",   # OK for inference — not DDP
     )
     model.eval()
@@ -92,11 +88,7 @@ def complete_streaming(model, tokenizer, prompt: str,
 def chat(model, tokenizer,
          question: str,
          system_prompt: str = "You are a helpful COVID-19 medical assistant.",
-<<<<<<< HEAD
          max_new_tokens: int = 300,
-=======
-         max_new_tokens: int = 1024,
->>>>>>> 07d00f6 (Final code of CPT and SFT)
          temperature: float = 0.7,
          top_p: float = 0.9,
          stream: bool = False):

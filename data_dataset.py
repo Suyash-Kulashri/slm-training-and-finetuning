@@ -82,11 +82,7 @@ def build_dataset(tokenizer):
         total   = 0
         batches = [texts_list[i: i + TOKEN_BATCH] for i in range(0, len(texts_list), TOKEN_BATCH)]
         for batch in tqdm(batches, desc=label, unit="batch"):
-<<<<<<< HEAD
             enc    = tokenizer.batch_encode_plus(batch, add_special_tokens=False)
-=======
-            enc    = tokenizer(batch, add_special_tokens=False)
->>>>>>> 07d00f6 (Final code of CPT and SFT)
             total += sum(len(ids) for ids in enc["input_ids"])
         return total
 
