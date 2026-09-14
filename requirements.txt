@@ -1,0 +1,53 @@
+# =============================================================================
+# requirements.txt — COVID SLM Training Pipeline
+# Updated for: 4x A100-SXM4-40GB | multi-GPU torchrun | no Unsloth trainer
+#
+# CHANGES from original:
+#   - unsloth removed from training dependencies (kept ONLY for chat template helper)
+#   - flash-attn ADDED — replaces Unsloth's fused attention kernels (~2x speedup)
+#   - peft ADDED — LoraConfig + get_peft_model (was FastLanguageModel.get_peft_model)
+#   - bitsandbytes ADDED — explicit dep for adamw_bnb_8bit optimizer
+#   - torch kept (install per your CUDA version, see note below)
+#
+# INSTALL ORDER (important):
+#   1. pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#   2. pip install flash-attn --no-build-isolation        # needs torch installed first
+#   3. pip install -r requirements.txt
+# =============================================================================
+
+# ── Core training stack ───────────────────────────────────────────────────────
+transformers>=4.40.0
+peft>=0.10.0                  # LoraConfig, get_peft_model — replaces Unsloth LoRA setup
+bitsandbytes>=0.43.0          # adamw_bnb_8bit optimizer (8-bit Adam)
+accelerate>=0.28.0            # required by HuggingFace Trainer for DDP
+datasets>=2.18.0
+tokenizers>=0.15.0
+
+# ── Flash Attention 2 — replaces Unsloth's fused kernels ─────────────────────
+# Install separately AFTER torch: pip install flash-attn --no-build-isolation
+# Do NOT include here as it needs --no-build-isolation flag
+# flash-attn>=2.5.0           # install manually — see above
+
+# ── Data pipeline ─────────────────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.66.0
+datasketch>=1.6.0             # MinHash LSH deduplication
+langdetect>=1.0.9             # language detection filter
+pandarallel>=1.6.5            # parallel pandas operations
+ipywidgets>=8.0.0             # required by pandarallel for progress bars
+
+# ── Chat template helper (optional — only used in sft_trainer.py) ─────────────
+# Unsloth is used ONLY for get_chat_template() — NOT for training.
+# If you want to remove this dep entirely, replace apply_chat_template() in
+# sft_trainer.py with a manual Llama-3 template string.
+unsloth>=2026.1.3             # chat template helper only — NOT used for training
+
+# ── Inference + GGUF ──────────────────────────────────────────────────────────
+llama-cpp-python>=0.2.0       # GGUF inference (optional)
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+scipy>=1.11.0
+scikit-learn>=1.3.0

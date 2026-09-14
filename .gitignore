@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # -----------------------------------------------------------------------------
 # Python
 # -----------------------------------------------------------------------------
@@ -100,39 +99,3 @@ temp/
 # datasets/
 # *.parquet
 # *.arrow
-=======
-# Ignore everything by default
-*
-
-# But keep Python and shell scripts
-!*.py
-!*.sh
-
-# Also keep git metadata and this gitignore itself
-!.gitignore
-!.gitattributes
-!.gitmodules
-
-# Ignore JSONL data files
-*.jsonl
-
-# Ignore GGUF model files
-*.gguf
-
-# Ignore common checkpoint, log, and module directories
-checkpoints/
-checkpoints*/
-logs/
-logs*/
-modules/
-modules*/
-
-# Ignore Python bytecode and caches
-__pycache__/
-*.py[cod]
-
-# Ignore virtual environments
-.venv/
-venv/
-
->>>>>>> 07d00f6 (Final code of CPT and SFT)
