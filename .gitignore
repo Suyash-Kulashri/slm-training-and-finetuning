@@ -1,0 +1,138 @@
+<<<<<<< HEAD
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# -----------------------------------------------------------------------------
+# Virtual environments
+# -----------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.env.local
+
+# -----------------------------------------------------------------------------
+# Environment & secrets
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------------------------------------------------------
+# IDE / Editor
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# OS
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------------------------------------------------------
+# ML / Training
+# -----------------------------------------------------------------------------
+# Checkpoints and saved models (often large)
+checkpoints/
+output/
+outputs/
+runs/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.gguf
+
+# Experiment tracking
+wandb/
+mlruns/
+.neptune/
+
+# Cache (tokenized data, etc.)
+.cache/
+*.cache
+tokenized_cache/
+
+# -----------------------------------------------------------------------------
+# Jupyter
+# -----------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# -----------------------------------------------------------------------------
+# Logs & temp
+# -----------------------------------------------------------------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# -----------------------------------------------------------------------------
+# Data (uncomment if you don't want to track raw/processed data)
+# -----------------------------------------------------------------------------
+# data/
+# datasets/
+# *.parquet
+# *.arrow
+=======
+# Ignore everything by default
+*
+
+# But keep Python and shell scripts
+!*.py
+!*.sh
+
+# Also keep git metadata and this gitignore itself
+!.gitignore
+!.gitattributes
+!.gitmodules
+
+# Ignore JSONL data files
+*.jsonl
+
+# Ignore GGUF model files
+*.gguf
+
+# Ignore common checkpoint, log, and module directories
+checkpoints/
+checkpoints*/
+logs/
+logs*/
+modules/
+modules*/
+
+# Ignore Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+.venv/
+venv/
+
+>>>>>>> 07d00f6 (Final code of CPT and SFT)
